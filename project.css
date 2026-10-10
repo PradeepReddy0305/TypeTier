@@ -1,3 +1,11 @@
+
+body{
+    background-color: black;
+    color: white;
+    justify-items: center;
+    font-family: Arial, sans-serif;
+}
+
 #navbar{
     border: 2px solid black;
     padding: 20px;
@@ -9,23 +17,86 @@
 }
 #logo{
     width: 20%;
+    color: darkblue;
+    font-size: xx-large;
 }
 #difficulty{
     display: flex;
     justify-content: space-between;
     width: 40%;
 }
-#easybutton,#mediumbutton,#hardbutton,#resetbutton{
+#easybutton,#mediumbutton,#hardbutton,#scorebutton{
     font-size: large;
+    padding: 3px 10px;
     width: 100px;
 }
+#scorebutton{
+    width: 120px;
+}
+
+#typetext{
+    color: coral;
+}
+
 #typecard{
     width: 800px;
-    margin-left: 20%;
     text-align: center;
 }
 #speedtest{
+    border: 2px solid rgb(255, 213, 0);
+    background-color:rgb(255, 188, 2);
+    color: black;
     width: 800px;
     height: 200px;
     font-size: larger;
+}
+#speedtest:focus{
+    border: 5px solid red;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#submitbutton, #anotherbutton, #backbutton{
+    padding: 6px 15px;
+    border-radius: 10px;
+    color: rgb(19, 2, 253);
+    border: 2px solid rgb(148, 0, 0);
+    background-color: rgb(255, 0, 0);
+    font-size: larger;
+    font-family: cursive;
+    cursor: pointer;
+}
+#submitbutton:hover, #anotherbutton:hover, #backbutton:hover{
+    border: 2px solid green;
+    background-color: rgb(0, 255, 0);
+    color: black;
+}
+
+/* Scoreboard Table Styles */
+#score-view {
+    width: 90%;
+    text-align: center;
+    margin-top: 30px;
+}
+#score-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #111;
+    color: white;
+}
+#score-table th, #score-table td {
+    border: 1px solid #444;
+    padding: 12px;
+    text-align: center;
+}
+#score-table th {
+    background-color: #222;
+    color: coral;
 }

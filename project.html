@@ -3,35 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project</title>
+    <title>TypeTier - Speed Test</title>
     <link rel="stylesheet" href="project.css">
 </head>
 <body>
     
     <div id="navbar">
-        <div id="logo">Logo</div>
+        <div id="logo">TypeTier</div>
         <div id="difficulty">
             <button id="easybutton">Easy</button>
             <button id="mediumbutton">Meduim</button>
             <button id="hardbutton">Hard</button>
         </div>
-        <div id="reset">
-            <button id="resetbutton">Reset</button>
+        <div id="scorediv">
+            <button id="scorebutton">ScoreBoard</button>
         </div>
     </div>
     
-    <div id="typecard">
-        <h1 id="startheading">Start your speed test Here</h1>
-        <h2 id="typetext">The quick brown fox jumps over the lazy dog while a bright morning 
-            sun shines gently across the quiet valley. Technology continues to 
-            change how people communicate, work, and share creative ideas every 
-            single day. Learning to type without looking at the keyboard is an essential 
-            skill that helps save valuable time and boosts overall daily productivity. 
-            Practice regularly with focus and steady rhythm to improve both your speed and 
-            your accuracy.</h2>
-        <textarea name="wpm" id="speedtest" placeholder="Try your Speed"></textarea>
-        <br><br>
-        <button id="submitbutton">Check Speed</button>
+    <!-- Test View Container -->
+    <div id="test-view">
+        <div id="typecard">
+            <h1 id="startheading">Start your speed test Here :</h1>
+            <h2 id="typetext">Select a difficulty mode to begin!</h2>
+            <textarea name="wpm" id="speedtest" placeholder="Try your Speed"></textarea>
+            <br><br>
+            <div id="button-group">
+                <button id="submitbutton">Check Speed</button>
+                <button id="anotherbutton" style="display: none;">Try Another Question</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scoreboard Table View (Hidden by default) -->
+    <div id="score-view" style="display: none;">
+        <h1>Your Scoreboard</h1>
+        <button id="backbutton">Back to Test</button>
+        <table id="score-table">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Type</th>
+                    <th>Speed (WPM)</th>
+                    <th>Accuracy</th>
+                    <th>Mistakes</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+            <tbody id="score-tbody">
+                <!-- Dynamic rows inserted here -->
+            </tbody>
+        </table>
     </div>
     
     <script src="project.js"></script>
