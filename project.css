@@ -1,0 +1,31 @@
+#navbar{
+    border: 2px solid black;
+    padding: 20px;
+    width: 97%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+}
+#logo{
+    width: 20%;
+}
+#difficulty{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+#easybutton,#mediumbutton,#hardbutton,#resetbutton{
+    font-size: large;
+    width: 100px;
+}
+#typecard{
+    width: 800px;
+    margin-left: 20%;
+    text-align: center;
+}
+#speedtest{
+    width: 800px;
+    height: 200px;
+    font-size: larger;
+}
