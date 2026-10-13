@@ -70,6 +70,7 @@ let isSubmitted = false
 
 let score = document.createElement("h1")
 let mistake = 0
+let lastValue = ""
 
 // Event listeners for difficulty buttons
 easyBtn.addEventListener("click", function() {
@@ -92,6 +93,20 @@ ans.addEventListener("input", function() {
     if (!startTime) {
         startTime = new Date().getTime()
     }
+    
+    let currentValue = ans.value
+    
+    // Check if user typed a character forward
+    if (currentValue.length > lastValue.length) {
+        let typedIndex = currentValue.length - 1
+        if (textLetters[typedIndex] && currentValue[typedIndex] !== textLetters[typedIndex]) {
+            mistake++
+        } else if (!textLetters[typedIndex]) {
+            mistake++
+        }
+    }
+    
+    lastValue = currentValue
     typing()
 })
 
@@ -181,13 +196,19 @@ function checkSpeed() {
     let timeTakenInSeconds = (endTime - startTime) / 1000
     let timeTakenInMinutes = timeTakenInSeconds / 60
     
-    let ansLetters = ans.value.split("")
-    mistake = 0
+    //to check final no of mistakes
+    /* let ansLetters = ans.value.split("")
+    let finalMistake = 0
     
     for (let i = 0; i < textLetters.length; i++) {
         if (textLetters[i] != ansLetters[i]) {
-            mistake++
+            finalMistake++
         }
+    } */
+    
+    let uncompletedChars = textLetters.length - ans.value.length
+    if (uncompletedChars > 0) {
+        mistake += uncompletedChars
     }
     
     // Calculate WPM (Standard formula: total characters / 5 / minutes)
