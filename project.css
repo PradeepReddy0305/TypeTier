@@ -1,59 +1,129 @@
-
 body{
-    background-color: black;
+    background-color: rgb(10, 9, 9);
     color: white;
     justify-items: center;
     font-family: Arial, sans-serif;
+    background-image: url("https://images.wallpapersden.com/image/download/poster-of-dune-part-3_bmhnbWqUmZqaraWkpJRobWllrWdma2U.jpg");
+    background-size: cover;
 }
 
-#navbar{
-    border: 2px solid black;
-    padding: 20px;
-    width: 97%;
-    height: auto;
+#navbar {
+    background: linear-gradient(135deg, #1d1d1d, #000000);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 17px 30px;
+    width: 95%;
+    margin: 20px auto;
     display: flex;
+    position: sticky; /* Keeps the nav at the top when scrolling */
+    top: 0;           /* Sets the stick point to the very top */
+    z-index: 1000; 
+    align-items: center;
     justify-content: space-between;
-    background-color: aliceblue;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
-#logo{
-    width: 20%;
-    color: darkblue;
-    font-size: xx-large;
+
+#logo {
+    color: #ffb703;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
 }
-#difficulty{
+
+#difficulty {
     display: flex;
-    justify-content: space-between;
-    width: 40%;
+    gap: 12px;
 }
-#easybutton,#mediumbutton,#hardbutton,#scorebutton{
-    font-size: large;
-    padding: 3px 10px;
-    width: 100px;
+
+#easybutton, #mediumbutton, #hardbutton, #scorebutton {
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto;
+    min-width: 95px;
 }
-#scorebutton{
+
+#easybutton{
+    color: #2ec4b6;
+} #mediumbutton{
+    color: rgb(255, 204, 0);
+} #hardbutton{
+    color: red;
+}
+
+/* Individual Hover Glow Effects */
+#easybutton:hover {
+    background-color: #2ec4b6;
+    border-color: #2ec4b6;
+    color: #000;
+    box-shadow: 0 0 12px rgba(46, 196, 182, 0.5);
+}
+
+#mediumbutton:hover {
+    background-color: #ffb703;
+    border-color: #ffb703;
+    color: #000;
+    box-shadow: 0 0 12px rgba(255, 183, 3, 0.5);
+}
+
+#hardbutton:hover {
+    background-color: #e71d36;
+    border-color: #e71d36;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(231, 29, 54, 0.5);
+}
+
+#scorebutton {
+    background-color: #5794f7;
+    border-color: #3a86ff;
     width: 120px;
 }
 
+#scorebutton:hover {
+    background-color: #113bf8;
+    border-color: #002fff;
+    color: rgb(0, 255, 229);
+    box-shadow: 0 0 12px rgba(37, 242, 249, 0.5);
+}
+
 #typetext{
-    color: coral;
+    color: rgb(2, 137, 145);
 }
 
 #typecard{
-    width: 800px;
+    width: 700px;
     text-align: center;
+    background-color: rgba(22, 27, 34, 0.525); /* Semi-transparent dark background */
+    backdrop-filter: blur(10px); /* Creates a sleek frosted glass effect */
+    border: 1px solid #282828;
+    color: #000;
+    border-radius: 16px;
+    padding: 30px;
+    
 }
 #speedtest{
-    border: 2px solid rgb(255, 213, 0);
-    background-color:rgb(255, 188, 2);
+    border: 2px solid rgb(234, 182, 77);
+    /* background-color:rgb(255, 136, 0); */
+    background-color: #1a1a1a;
     color: black;
-    width: 800px;
+    width: 700px;
     height: 200px;
     font-size: larger;
+    display: none;
+    border-radius: 16px;
 }
 #speedtest:focus{
-    border: 5px solid red;
-    background-color: rgb(0, 0, 0);
-    color: white;
+    border: 5px solid #ff9100;
+    color: white;/* Matches your gold logo glow! */
+    box-shadow: 0 0 12px rgba(255, 183, 3, 0.3);
 }
 
 #button-group {
@@ -62,20 +132,26 @@ body{
     gap: 15px;
 }
 
+#submitbutton{
+    display: none;
+}
+
 #submitbutton, #anotherbutton, #backbutton{
     padding: 6px 15px;
     border-radius: 10px;
-    color: rgb(19, 2, 253);
-    border: 2px solid rgb(148, 0, 0);
-    background-color: rgb(255, 0, 0);
-    font-size: larger;
+    color: white;
+    border: 2px solid rgb(255, 0, 0);
+    background-color: crimson;
+    font-size: x-large;
     font-family: cursive;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 #submitbutton:hover, #anotherbutton:hover, #backbutton:hover{
     border: 2px solid green;
     background-color: rgb(0, 255, 0);
     color: black;
+    box-shadow: 0 0 20px rgba(36, 194, 65, 0.5);
 }
 
 /* Scoreboard Table Styles */

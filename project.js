@@ -72,30 +72,47 @@ let score = document.createElement("h1")
 let mistake = 0
 let lastValue = ""
 
+function display() {
+    testView.style.display = "block"
+    scoreView.style.display = "none"
+    ans.style.display = "inline-block"
+    submitBtn.style.display = "inline-block"
+}
+
 // Event listeners for difficulty buttons
-easyBtn.addEventListener("click", function() {
+easyBtn.addEventListener("click", function () {
     currentDifficulty = "easy"
+    display()
     setRandomSentence("easy")
 })
 
-mediumBtn.addEventListener("click", function() {
+mediumBtn.addEventListener("click", function () {
     currentDifficulty = "medium"
+    display()
     setRandomSentence("medium")
 })
 
-hardBtn.addEventListener("click", function() {
+hardBtn.addEventListener("click", function () {
     currentDifficulty = "hard"
+    display()
     setRandomSentence("hard")
 })
 
+ans.addEventListener("keydown", function (event) {
+    // Check if Enter was pressed without the Shift key
+    if (event.key === "Enter") {
+        event.preventDefault() // Prevents the default action
+        handleMainButtonClick()           // Triggers submit
+    }
+})
 
-ans.addEventListener("input", function() {
+ans.addEventListener("input", function () {
     if (!startTime) {
         startTime = new Date().getTime()
     }
-    
+
     let currentValue = ans.value
-    
+
     // Check if user typed a character forward
     if (currentValue.length > lastValue.length) {
         let typedIndex = currentValue.length - 1
@@ -105,7 +122,7 @@ ans.addEventListener("input", function() {
             mistake++
         }
     }
-    
+
     lastValue = currentValue
     typing()
 })
@@ -115,13 +132,13 @@ ans.addEventListener("input", function() {
 function typing() {
     let typedLetters = ans.value.split("")
     let spans = text.querySelectorAll("span")
-    
+
     for (let i = 0; i < spans.length; i++) {
         let currentLetter = typedLetters[i]
-        
+
         if (currentLetter == null) {
             // Not typed yet (reset style)
-            spans[i].style.color = "coral"
+            spans[i].style.color = "rgb(2, 137, 145)"
             spans[i].style.textDecoration = "none"
         } else if (currentLetter === textLetters[i]) {
             // Correct letter -> Green
@@ -140,22 +157,22 @@ function setRandomSentence(level) {
     let list = sentences[level]
     let randomIndex = Math.floor(Math.random() * list.length)
     currentSentence = list[randomIndex]
-    
+
     text.innerText = ""
     textLetters = currentSentence.split("")
-    
+
     // Convert each letter of the sentence into a <span> for live coloring
     for (let i = 0; i < textLetters.length; i++) {
         let span = document.createElement("span")
         span.innerText = textLetters[i]
         text.append(span)
     }
-    
+
     // Clear input and reset timer
     ans.value = ""
     startTime = null
     score.remove()
-    
+
     // Reset buttons state
     isSubmitted = false
     submitBtn.innerText = "Check Speed"
@@ -165,9 +182,16 @@ function setRandomSentence(level) {
 function handleMainButtonClick() {
     if (!isSubmitted) {
         checkSpeed()
-    } 
+    }
     else {
         // Try Again logic: clear textarea and timer, keep sentence
+        let spans = text.querySelectorAll("span")
+
+        for (let i = 0; i < spans.length; i++) {
+            spans[i].style.color = "rgb(2, 137, 145)"
+            spans[i].style.textDecoration = "none"
+        }
+
         ans.value = ""
         startTime = null
         score.remove()
@@ -182,7 +206,7 @@ function handleAnotherQuestion() {
 }
 
 function checkSpeed() {
-    
+
     let endTime = new Date().getTime()
 
     // Handle case where user clicks submit without typing
@@ -191,11 +215,11 @@ function checkSpeed() {
         b.append(score)
         return
     }
-    
+
     // Calculate time in minutes
     let timeTakenInSeconds = (endTime - startTime) / 1000
     let timeTakenInMinutes = timeTakenInSeconds / 60
-    
+
     //to check final no of mistakes
     /* let ansLetters = ans.value.split("")
     let finalMistake = 0
@@ -205,19 +229,19 @@ function checkSpeed() {
             finalMistake++
         }
     } */
-    
+
     let uncompletedChars = textLetters.length - ans.value.length
     if (uncompletedChars > 0) {
         mistake += uncompletedChars
     }
-    
+
     // Calculate WPM (Standard formula: total characters / 5 / minutes)
     let totalCharactersTyped = ans.value.length
     let wpm = Math.round((totalCharactersTyped / 5) / timeTakenInMinutes)
     if (isNaN(wpm) || timeTakenInMinutes === 0) {
         wpm = 0
     }
-    
+
     // Calculate Accuracy percentage
     let totalTargetChars = textLetters.length
     let correctChars = totalTargetChars - mistake
@@ -229,11 +253,11 @@ function checkSpeed() {
     // Display results
     b.append(score)
     score.innerHTML = "Speed: " + wpm + " WPM | Accuracy: " + accuracy + "% | Mistakes: " + mistake
-    
+
     // Save score data to localStorage
     let now = new Date()
     let dateTimeStr = now.toLocaleDateString() + " " + now.toLocaleTimeString()
-    
+
     let record = {
         question: currentSentence,
         type: currentDifficulty.toUpperCase(),
@@ -256,15 +280,22 @@ function checkSpeed() {
 function showScoreboardPage() {
     testView.style.display = "none"
     scoreView.style.display = "block"
-    
+
+    ans.value = ""
+    startTime = null
+    score.remove()
+    isSubmitted = false
+    submitBtn.innerText = "Check Speed"
+    anotherBtn.style.display = "none"
+
     // Populate table from localStorage
     scoreTbody.innerHTML = ""
     let savedScores = JSON.parse(localStorage.getItem("typeTierScores")) || []
-    
+
     for (let i = 0; i < savedScores.length; i++) {
         let item = savedScores[i]
         let row = document.createElement("tr")
-        row.innerHTML = 
+        row.innerHTML =
             "<td>" + item.question + "</td>" +
             "<td>" + item.type + "</td>" +
             "<td>" + item.wpm + "</td>" +
@@ -278,4 +309,11 @@ function showScoreboardPage() {
 function showTestPage() {
     scoreView.style.display = "none"
     testView.style.display = "block"
+
+    let spans = text.querySelectorAll("span")
+
+    for (let i = 0; i < spans.length; i++) {
+        spans[i].style.color = "rgb(2, 137, 145)"
+        spans[i].style.textDecoration = "none"
+    }
 }
