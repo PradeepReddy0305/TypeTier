@@ -15,10 +15,8 @@ body {
     width: 95%;
     margin: 20px auto;
     display: flex;
-    position: sticky;
-    /* Keeps the nav at the top when scrolling */
-    top: 0;
-    /* Sets the stick point to the very top */
+    position: sticky;       /* Keeps the nav at the top when scrolling */
+    top: 0;                 /* Sets the stick point to the very top */
     z-index: 1000;
     align-items: center;
     justify-content: space-between;
@@ -88,6 +86,7 @@ body {
     box-shadow: 0 0 12px rgba(231, 29, 54, 0.5);
 }
 
+
 #scorebutton {
     background-color: #5794f7;
     width: 125px;
@@ -108,10 +107,8 @@ body {
 #typecard {
     width: 700px;
     text-align: center;
-    background-color: rgba(22, 27, 34, 0.525);
-    /* Semi-transparent dark background */
-    backdrop-filter: blur(10px);
-    /* Creates a sleek frosted glass effect */
+    background-color: rgba(22, 27, 34, 0.525);  /* Semi-transparent dark background */
+    backdrop-filter: blur(10px);                  /* Creates a sleek frosted glass effect */
     border: 1px solid #282828;
     color: #000;
     border-radius: 16px;
@@ -122,7 +119,7 @@ body {
 #speedtest {
     border: 2px solid rgb(234, 182, 77);
     background-color: #1a1a1a;
-    color: black;
+    color: white;
     width: 700px;
     height: 200px;
     font-size: larger;
@@ -164,6 +161,7 @@ body {
     color: black;
     box-shadow: 0 0 20px rgba(36, 194, 65, 0.5);
 }
+
 
 /* Scoreboard Table Styles */
 #score-view {

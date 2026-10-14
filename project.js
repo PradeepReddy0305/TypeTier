@@ -179,6 +179,8 @@ function setRandomSentence(level) {
     anotherBtn.style.display = "none"
 }
 
+
+// function for checkspeed button
 function handleMainButtonClick() {
     if (!isSubmitted) {
         checkSpeed()
@@ -201,9 +203,11 @@ function handleMainButtonClick() {
     }
 }
 
+// to get another sentence in same difficulty
 function handleAnotherQuestion() {
     setRandomSentence(currentDifficulty)
 }
+
 
 function checkSpeed() {
 
@@ -221,14 +225,14 @@ function checkSpeed() {
     let timeTakenInMinutes = timeTakenInSeconds / 60
 
     //to check final no of mistakes
-    /* let ansLetters = ans.value.split("")
+    let ansLetters = ans.value.split("")
     let finalMistake = 0
     
     for (let i = 0; i < textLetters.length; i++) {
         if (textLetters[i] != ansLetters[i]) {
             finalMistake++
         }
-    } */
+    }
 
     let uncompletedChars = textLetters.length - ans.value.length
     if (uncompletedChars > 0) {
@@ -252,7 +256,7 @@ function checkSpeed() {
 
     // Display results
     b.append(score)
-    score.innerHTML = "Speed: " + wpm + " WPM | Accuracy: " + accuracy + "% | Mistakes: " + mistake
+    score.innerHTML = "Speed: " + wpm + " WPM | Accuracy: " + accuracy + "% | Mistakes: " + finalMistake
 
     // Save score data to localStorage
     let now = new Date()
